@@ -13,7 +13,7 @@ Tempo: <span class="playback-rate-value">1.0</span>
 <br>
 <input type="checkbox" checked>Play when slider is moved?
 <br>
-<img src="https://t1.rbxcdn.com/8143b352786860ba48771b9f514acaed" style="cursor:pointer;width:10em;height:10em;" ontouchstart="window.playSound()" onmousedown="(!('ontouchstart' in window))&&(window.playSound())">
+<img src="https://t1.rbxcdn.com/8143b352786860ba48771b9f514acaed" style="cursor:pointer;width:10em;height:10em;" ontouchend="window.playSound()" onmouseup="(!('ontouchend' in window))&&(window.playSound())">
 <script>
 var audioCtx=new (window.AudioContext||window.webkitAudioContext)();
 var source;
