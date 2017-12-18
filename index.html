@@ -1,0 +1,42 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>OOF Slider</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<h1>Oof</h1>
+<input class="playback-rate-control" type="range" min="0.25" max="3" step="0.05" value="1">
+Tempo: <span class="playback-rate-value">1.0</span>
+<br>
+<input type="checkbox" checked>Play when slider is moved?
+<br>
+<img src="https://t1.rbxcdn.com/8143b352786860ba48771b9f514acaed" style="cursor:pointer;width:10em;height:10em;" ontouchstart="window.playSound()" onmousedown="(!('ontouchstart' in window))&&(window.playSound())">
+<script>
+var audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+var source;
+function getData(url){
+source=audioCtx.createBufferSource();
+request=new XMLHttpRequest();
+request.open('GET','https://ayunami2000.github.io/dl/roblox-death-sound_1.mp3',true);//make into data url
+request.responseType='arraybuffer';
+request.onload=function(){
+var audioData=request.response;
+audioCtx.decodeAudioData(audioData,function(buffer){
+myBuffer=buffer;
+source.buffer=myBuffer;
+source.playbackRate.value=document.querySelector('.playback-rate-control').value;
+source.connect(audioCtx.destination);
+},function(e){console.log(e);});
+}
+request.send();
+}
+window.playSound=function(){
+  getData();
+  source.start(0);
+  source.playbackRate.value=document.querySelector('.playback-rate-control').value;
+}
+document.querySelector('.playback-rate-control').oninput=function(){document.querySelector('.playback-rate-value').innerHTML=document.querySelector('.playback-rate-control').value;(document.querySelector('input[type=checkbox]').checked)&&window.playSound();}
+</script>
+</body>
+</html>
