@@ -16,10 +16,10 @@ Tempo: <span class="playback-rate-value">1.0</span>
 <script>
 var audioCtx=new (window.AudioContext||window.webkitAudioContext)();
 var source;
-function getData(url){
+function getData(){
 source=audioCtx.createBufferSource();
 request=new XMLHttpRequest();
-request.open('GET','oof.mp3',true);//make into data url
+request.open('GET',window.oof,true);
 request.responseType='arraybuffer';
 request.onload=function(){
 var audioData=request.response;
