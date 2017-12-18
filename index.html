@@ -18,23 +18,12 @@ var audioCtx=new (window.AudioContext||window.webkitAudioContext)();
 var source;
 function getData(){
 source=audioCtx.createBufferSource();
-/*
-request=new XMLHttpRequest();
-request.open('GET',window.oof,true);
-request.responseType='arraybuffer';
-request.onload=function(){
-var audioData=request.response;
-*/
 audioCtx.decodeAudioData(window.oof.slice(0),function(buffer){
 myBuffer=buffer;
 source.buffer=myBuffer;
 source.playbackRate.value=document.querySelector('.playback-rate-control').value;
 source.connect(audioCtx.destination);
 },function(e){console.log(e);});
-/*
-}
-request.send();
-*/
 }
 window.playSound=function(){
 getData();
