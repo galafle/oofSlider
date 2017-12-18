@@ -32,9 +32,9 @@ source.connect(audioCtx.destination);
 request.send();
 }
 window.playSound=function(){
-  getData();
-  source.start(0);
-  source.playbackRate.value=document.querySelector('.playback-rate-control').value;
+getData();
+source.start(0);
+source.playbackRate.value=document.querySelector('.playback-rate-control').value;
 }
 document.querySelector('.playback-rate-control').oninput=function(){document.querySelector('.playback-rate-value').innerHTML=document.querySelector('.playback-rate-control').value;(document.querySelector('input[type=checkbox]').checked)&&window.playSound();}
 </script>
