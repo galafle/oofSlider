@@ -18,20 +18,19 @@ Tempo: <span class="playback-rate-value">1.0</span>
 <script>
 var audioCtx=new (window.AudioContext||window.webkitAudioContext)();
 var source;
-function getData(){
+function getData(){try{
 source=audioCtx.createBufferSource();
 audioCtx.decodeAudioData(window.oof.slice(0),function(buffer){
-myBuffer=buffer;
-source.buffer=myBuffer;
+source.buffer=buffer;
 source.playbackRate.value=document.querySelector('.playback-rate-control').value;
 source.connect(audioCtx.destination);
 },function(e){console.log(e);});
-}
-window.playSound=function(){try{
+}catch(e){alert(e);}}
+window.playSound=function(){
 getData();
 source.start(0);
 source.playbackRate.value=document.querySelector('.playback-rate-control').value;
-}catch(e){alert(e);}}
+}
 document.querySelector('.playback-rate-control').oninput=function(){document.querySelector('.playback-rate-value').innerHTML=document.querySelector('.playback-rate-control').value;(document.querySelector('input[type=checkbox]').checked)&&window.playSound();}
 </script>
 </body>
