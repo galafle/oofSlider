@@ -25,8 +25,7 @@ request.responseType='arraybuffer';
 request.onload=function(){
 var audioData=request.response;
 */
-  var audioData=window.oof;
-audioCtx.decodeAudioData(audioData,function(buffer){
+audioCtx.decodeAudioData(window.oof.slice(0),function(buffer){
 myBuffer=buffer;
 source.buffer=myBuffer;
 source.playbackRate.value=document.querySelector('.playback-rate-control').value;
