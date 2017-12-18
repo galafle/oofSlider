@@ -27,11 +27,11 @@ source.playbackRate.value=document.querySelector('.playback-rate-control').value
 source.connect(audioCtx.destination);
 },function(e){console.log(e);});
 }
-window.playSound=function(){
+window.playSound=function(){try{
 getData();
 source.start(0);
 source.playbackRate.value=document.querySelector('.playback-rate-control').value;
-}
+}catch(e){alert(e);}}
 document.querySelector('.playback-rate-control').oninput=function(){document.querySelector('.playback-rate-value').innerHTML=document.querySelector('.playback-rate-control').value;(document.querySelector('input[type=checkbox]').checked)&&window.playSound();}
 </script>
 </body>
